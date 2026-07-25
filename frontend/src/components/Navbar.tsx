@@ -1,55 +1,34 @@
-import type { LucideIcon } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
-interface DashboardCardProps {
-  title: string;
-  value: string | number;
-  description?: string;
-  icon?: LucideIcon;
-  trend?: {
-    value: number;
-    isPositive: boolean;
-  };
-}
+const Navbar = () => {
+  const location = useLocation();
 
-const DashboardCard = ({
-  title,
-  value,
-  description,
-  icon: Icon,
-  trend,
-}: DashboardCardProps) => {
+  const isActive = (path: string) =>
+    location.pathname === path
+      ? "text-blue-600 font-semibold"
+      : "text-gray-600 hover:text-blue-600";
+
   return (
-    <div className="bg-white shadow rounded-lg p-6">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm font-medium text-gray-500">{title}</p>
-          <h3 className="mt-2 text-2xl font-bold text-gray-900">{value}</h3>
-          {description && (
-            <p className="mt-1 text-sm text-gray-500">{description}</p>
-          )}
-        </div>
+    <header className="bg-white shadow">
+      <div className="max-w-7xl mx-auto h-16 flex items-center justify-between px-6">
+        <Link to="/classes" className="text-2xl font-bold text-blue-600">
+          Class Management
+        </Link>
 
-        {Icon && (
-          <div className="p-2.5 rounded-lg bg-blue-50">
-            <Icon className="w-5 h-5 text-blue-600" />
-          </div>
-        )}
+        <nav className="flex items-center gap-6">
+          <Link to="/classes" className={isActive("/classes")}>
+            Danh sách lớp
+          </Link>
+
+          {/* <Link
+            to="/classes/create"
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            + Thêm lớp
+          </Link> */}
+        </nav>
       </div>
-
-      {trend && (
-        <div className="mt-4 flex items-center gap-1.5">
-          <span
-            className={`text-sm font-medium ${
-              trend.isPositive ? "text-green-600" : "text-red-600"
-            }`}>
-            {trend.isPositive ? "+" : ""}
-            {trend.value}%
-          </span>
-          <span className="text-sm text-gray-500">so với tháng trước</span>
-        </div>
-      )}
-    </div>
+    </header>
   );
 };
 
-export default DashboardCard;
+export default Navbar;
