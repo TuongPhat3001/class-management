@@ -1,0 +1,24 @@
+# Environment - TUYỆT ĐỐI KHÔNG COMMIT
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/vendor/
+
+# Build
+dist/
+build/
+*.exe
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
