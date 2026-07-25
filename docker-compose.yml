@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my_frontend_app
+    ports:
+      - "3000:80" # Máy chủ VPS sẽ dùng port 3000, trỏ vào port 80 của Nginx trong container
+    restart: unless-stopped
